@@ -1,0 +1,56 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Сумма_и_произведение_в_матрице
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[,] array = new int[4, 4];
+            int summSecondLine = 0;
+            int markerSecondLine = 0;
+            int markerOneColumm = 0;
+            int multiplicationOneColumm = 1;
+            int multiplicationQuantityColumm = 0;
+            int maxValueInMatrix = 10;
+            int minValueInMatrix = 0;
+            Random random = new Random();
+            Console.WriteLine("Дана матрица ");
+
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    array[i, j] = random.Next(maxValueInMatrix, minValueInMatrix);
+                    Console.Write(array[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+            foreach (var number in array)
+            {
+                markerSecondLine++;
+
+                if (markerSecondLine <= ((array.GetLength(0))*2) && (markerSecondLine > array.GetLength(0)))
+                {
+                    summSecondLine += number;
+                }
+            }
+            Console.WriteLine("Сумма второй строки - " + summSecondLine);
+
+            foreach (var number in array)
+            {
+                if(markerOneColumm ==  (array.GetLength(1) * multiplicationQuantityColumm))
+                {
+                    multiplicationOneColumm *= number;
+                    multiplicationQuantityColumm ++;
+                }
+                markerOneColumm ++;
+            }
+            Console.WriteLine("Произведение первого столбца - " + multiplicationOneColumm);
+        }
+    }
+}
